@@ -489,6 +489,12 @@ ESPEAK_API void espeak_SetPhonemeTrace(int value, FILE *stream);
 #ifdef __cplusplus
 extern "C"
 #endif
+ESPEAK_API const char *espeak_Utf8TextToPhonemes(const char *textptr);
+
+
+#ifdef __cplusplus
+extern "C"
+#endif
 ESPEAK_API const char *espeak_TextToPhonemes(const void **textptr, int textmode, int phonememode);
 /* Translates text into phonemes.  Call espeak_SetVoiceByName() first, to select a language.
 

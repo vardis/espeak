@@ -811,7 +811,7 @@ ENTER("espeak_Initialize");
 	if((event_list = (espeak_EVENT *)realloc(event_list,sizeof(espeak_EVENT) * n_event_list)) == NULL)
 		return(EE_INTERNAL_ERROR);
 
-	option_phonemes = 0;
+        	option_phonemes = 0;
 	option_mbrola_phonemes = 0;
 	option_phoneme_events = (options & (espeakINITIALIZE_PHONEME_EVENTS | espeakINITIALIZE_PHONEME_IPA));
 
@@ -1179,6 +1179,21 @@ ESPEAK_API void espeak_SetPhonemeTrace(int value, FILE *stream)
 
 }   //  end of espeak_SetPhonemes
 
+ESPEAK_API const char *espeak_Utf8TextToPhonemes(const char *textptr)
+{//=================================================================================================
+//	printf("Called with %s\n", textptr);
+	//char* inputText = Alloc(strlen(textptr));
+	//strcpy(inputText, textptr);
+    //const char* phonems = espeak_TextToPhonemes((const void**)&inputText, espeakCHARS_UTF8, 16);
+    
+        option_multibyte = espeakCHARS_UTF8 & 7;
+	TranslateClause(translator, NULL, (const void*)textptr, NULL, NULL);
+	const char* phonems = GetTranslatedPhonemeString(16);
+        
+//	printf("Output is %s\n", phonems);
+	//Free(inputText);
+	return phonems;
+}
 
 ESPEAK_API const char *espeak_TextToPhonemes(const void **textptr, int textmode, int phonememode)
 {//=================================================================================================
