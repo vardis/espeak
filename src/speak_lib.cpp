@@ -1181,17 +1181,9 @@ ESPEAK_API void espeak_SetPhonemeTrace(int value, FILE *stream)
 
 ESPEAK_API const char *espeak_Utf8TextToPhonemes(const char *textptr)
 {//=================================================================================================
-//	printf("Called with %s\n", textptr);
-	//char* inputText = Alloc(strlen(textptr));
-	//strcpy(inputText, textptr);
-    //const char* phonems = espeak_TextToPhonemes((const void**)&inputText, espeakCHARS_UTF8, 16);
-    
         option_multibyte = espeakCHARS_UTF8 & 7;
 	TranslateClause(translator, NULL, (const void*)textptr, NULL, NULL);
-	const char* phonems = GetTranslatedPhonemeString(16);
-        
-//	printf("Output is %s\n", phonems);
-	//Free(inputText);
+	const char* phonems = GetTranslatedPhonemeString(16);		       
 	return phonems;
 }
 

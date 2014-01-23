@@ -1251,6 +1251,7 @@ void DoSonicSpeed(int value)
 void DoVoiceChange(voice_t *v)
 {//===========================
 // allocate memory for a copy of the voice data, and free it in wavegenfill()
+    /*
 	voice_t *v2;
 
 	v2 = (voice_t *)malloc(sizeof(voice_t));
@@ -1258,6 +1259,7 @@ void DoVoiceChange(voice_t *v)
 	wcmdq[wcmdq_tail][0] = WCMD_VOICE;
 	wcmdq[wcmdq_tail][2] = (long64)v2;
 	WcmdqInc();
+     */
 }
 
 
